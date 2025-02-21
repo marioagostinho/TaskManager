@@ -7,7 +7,8 @@ namespace Task.Application.Features.Task.Commands.CreateTask
         public CreateTaskCommandValidator()
         {
             RuleFor(p => p.Title)
-                .NotNull();
+                .NotEmpty().WithMessage("Title is required.")
+                .MinimumLength(2).WithMessage("Title must be at least 2 characters long.");
 
             RuleFor(p => p.Status)
                 .NotNull();

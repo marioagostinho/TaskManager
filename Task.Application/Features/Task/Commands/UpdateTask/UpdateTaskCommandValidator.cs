@@ -16,7 +16,8 @@ namespace Task.Application.Features.Task.Commands.UpdateTask
                 .MustAsync(TaskMustExist).WithMessage("Task must exist");
 
             RuleFor(p => p.Title)
-                .NotNull().WithMessage("{PropertyName} can't be null");
+                .NotEmpty().WithMessage("Title is required.")
+                .MinimumLength(2).WithMessage("Title must be at least 2 characters long.");
 
             RuleFor(p => p.Status)
                 .NotNull().WithMessage("{PropertyName} can't be null");
